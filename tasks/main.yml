@@ -1,0 +1,12 @@
+---
+- name: Install virtualization packages
+  community.general.rpm_ostree_pkg:
+    name: 
+      - libvirt-daemon-config-network
+      - libvirt-daemon-kvm
+      - qemu-kvm
+      - virt-install
+    state: present
+  notify:
+  - Reboot if required
+
