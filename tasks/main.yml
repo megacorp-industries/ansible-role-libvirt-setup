@@ -12,7 +12,7 @@
   - Reboot if required
 
 - name: Install systemd-networkd
-  community.general.rpm_ostree_pkg:
+  package:
     name: systemd-networkd
     state: present
   register: layersAdded
