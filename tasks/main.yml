@@ -1,11 +1,12 @@
 ---
 - name: Install virtualization packages
-  community.general.rpm_ostree_pkg:
+  package:
     name: 
       - libvirt-daemon-config-network
       - libvirt-daemon-kvm
       - qemu-kvm
       - virt-install
+      - edk2-ovmf
     state: present
   notify:
   - Reboot if required
@@ -20,17 +21,17 @@
   reboot:
   when: layersAdded.changed
 
-- name: Copy over bridge interface configuration
+- name: Copy over bridge interface config
   copy: 
     src: files/br.netdev
     dest: /etc/systemd/network/br.netdev
 
-- name: Copy over interface bind configuration
+- name: Copy over binding interface config
   copy: 
     src: files/1-br0-bind.network
     dest: /etc/systemd/network/1-br0-bind.network
 
-- name: Copy over bridge interface configuration
+- name: Copy over dhcp interface config
   copy: 
     src: files/2-br0-dhcp.network
     dest: /etc/systemd/network/2-br0-dhcp.network
