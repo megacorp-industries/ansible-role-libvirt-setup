@@ -8,18 +8,12 @@
       - virt-install
       - edk2-ovmf
     state: present
-  notify:
-  - Reboot if required
 
 - name: Install systemd-networkd
   package:
     name: systemd-networkd
     state: present
   register: layersAdded
-
-- name: Reboot if required
-  reboot:
-  when: layersAdded.changed
 
 - name: Copy over bridge interface config
   copy: 
@@ -39,11 +33,9 @@
 - name: Stop and disable NetworkManager
   systemd:
     name: NetworkManager
-    state: stopped
     enabled: false
 
 - name: Start and enable systemd-networkd
   systemd:
     name: systemd-networkd
-    state: started
     enabled: true
