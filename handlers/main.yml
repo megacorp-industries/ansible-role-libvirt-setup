@@ -1,2 +1,0 @@
-- name: Reboot if required
-  reboot:
