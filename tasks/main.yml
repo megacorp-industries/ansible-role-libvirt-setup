@@ -30,12 +30,12 @@
     src: files/2-br0-dhcp.network
     dest: /etc/systemd/network/2-br0-dhcp.network
 
-- name: Stop and disable NetworkManager
+- name: Disable NetworkManager
   systemd:
     name: NetworkManager
     enabled: false
 
-- name: Start and enable systemd-networkd
+- name: Enable systemd-networkd
   systemd:
     name: systemd-networkd
     enabled: true
